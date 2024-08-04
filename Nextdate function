@@ -38,12 +38,7 @@ int main()
         }
     }
 
-    // Check day range
-    if (d <= 0 || d > ndays)
-    {
-        printf("Invalid day!\n");
-        exit(0);
-    }
+  
 
     // Calculate next date
     nd = d + 1;

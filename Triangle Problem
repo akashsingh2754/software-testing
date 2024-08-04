@@ -1,0 +1,56 @@
+Triangle Problem 
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int isValidNumber(char *str) {
+    while (*str) {
+        if (!isdigit(*str)) {
+            return 0;
+        }
+        str++;
+    }
+    return 1;
+}
+
+int main() {
+    char input1[10], input2[10], input3[10];
+    int a, b, c;
+
+    printf("Enter the three sides of the triangle (a, b, c): ");
+    scanf("%s %s %s", input1, input2, input3);
+    
+    // Validate inputs
+    if (!isValidNumber(input1) || !isValidNumber(input2) || !isValidNumber(input3)) {
+        printf("Invalid input\n");
+        exit(0);
+    }
+    
+    // Convert to integers
+    a = atoi(input1);
+    b = atoi(input2);
+    c = atoi(input3);
+
+    // Check if all sides are within the range of 1 to 10
+    if (a <= 0 || b <= 0 || c <= 0 || a > 10 || b > 10 || c > 10) {
+        printf("Out of range\n");
+        exit(0);
+    }
+    
+    // Check if the sides form a valid triangle
+    if ((a < b + c) && (b < a + c) && (c < a + b)) {
+        if (a == b && b == c) {
+            printf("Equilateral Triangle\n");
+        } else if (a == b || b == c || c == a) {
+            printf("Isosceles Triangle\n");
+        } else {
+            printf("Scalene Triangle\n");
+        }
+    } else {
+        printf("Triangle cannot be formed\n");
+        exit(0);
+    }
+
+    return 0;
+}

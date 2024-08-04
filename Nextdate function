@@ -1,0 +1,70 @@
+Nextdate function
+
+#include<stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int months[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+    int d, m, y, nd, nm, ny, ndays;
+
+    printf("Enter date, month, year: ");
+    scanf("%d%d%d", &d, &m, &y);
+
+    // Check year range
+    if (y < 1812 || y > 2012)
+    {
+        printf("Invalid year!\n");
+        exit(0);
+    }
+
+    // Check month range
+    if (m < 1 || m > 12)
+    {
+        printf("Invalid month!\n");
+        exit(0);
+    }
+
+    // Get number of days in the month
+    ndays = months[m-1];
+
+    // Check for leap year if month is February
+    if (m == 2)
+    {
+        if ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0))
+        {
+            ndays = 29;
+        }
+    }
+
+    // Check day range
+    if (d <= 0 || d > ndays)
+    {
+        printf("Invalid day!\n");
+        exit(0);
+    }
+
+    // Calculate next date
+    nd = d + 1;
+    nm = m;
+    ny = y;
+
+    if (nd > ndays)
+    {
+        nd = 1;
+        nm++;
+    }
+
+    if (nm > 12)
+    {
+        nm = 1;
+        ny++;
+    }
+
+    printf("Current date: %02d-%02d-%04d\n", d, m, y);
+    printf("Next date: %02d-%02d-%04d\n", nd, nm, ny);
+
+    return 0;
+}
+ 
